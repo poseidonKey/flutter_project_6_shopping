@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/list_items.dart';
 import 'package:flutter_application_1/models/shopping_list.dart';
+import 'package:flutter_application_1/ui/items_screen.dart';
 import 'package:flutter_application_1/util/dbhelper.dart';
 
 void main() => runApp(const MyApp());
@@ -44,6 +45,16 @@ class _ShListState extends State<ShList> {
             child: Text(
               shoppingList![index].priority.toString(),
             ),
+          ),
+          trailing: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return ItemsScreen(shoppingList: shoppingList![index]);
+                }),
+              );
+            },
+            icon: const Icon(Icons.edit),
           ),
           title: Text(shoppingList![index].name),
         );
